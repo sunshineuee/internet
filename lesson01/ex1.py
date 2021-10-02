@@ -2,7 +2,6 @@ import requests
 import time
 import json
 
-
 def get_data(url: str) -> dict:
     while True:
         time.sleep(1)
