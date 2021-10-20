@@ -9,7 +9,7 @@ if __name__ == '__main__':
     crawler_settings = Settings()
     crawler_settings.setmodule(settings)
     process = CrawlerProcess(settings=crawler_settings)
-    process.crawl(leroySpider, search="люстра")
+    process.crawl(leroySpider, search="линолеум")
     process.start()
 
     process.start()
