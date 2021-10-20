@@ -17,4 +17,5 @@ class JobparserItem(scrapy.Item):
     company_name = scrapy.Field()
     company_address = scrapy.Field()
     site = scrapy.Field()
+
     link = scrapy.Field()
