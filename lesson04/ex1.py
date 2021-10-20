@@ -42,5 +42,5 @@ def get_news_yandex():
     return res
 
 
-#save_news(get_news_mail())
-#save_news(get_news_yandex())
+save_news(get_news_mail())
+save_news(get_news_yandex())
