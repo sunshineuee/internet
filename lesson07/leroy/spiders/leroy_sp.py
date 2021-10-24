@@ -8,12 +8,16 @@ class leroySpider(scrapy.Spider):
     allowed_domains = ['leroymerlin.ru']
 
     def __init__(self, search):
+        super().__init__()
         self.start_urls = [f'https://leroymerlin.ru/search/?q={search}&suggest=true']
 
     def parse(self, response:HtmlResponse):
-        ads_links = response.xpath("//a[@data-qa='product-image']//@href")
-        for link in ads_links:
-            yield response.follow(link, callback=self.ads_parse)
+        products = response.xpath("//div[@data-qa-product]/a")
+        next_page = response.xpath("//a[contains(@aria-label, 'Следующая страница')]/@href").get()
+        if next_page:
+            yield response.follow(next_page, callback=self.parse)
+        for product in products:
+            yield response.follow(product, callback=self.ads_parse)
 
     def ads_parse(self, response: HtmlResponse):
         loader = ItemLoader(item=LeroyItem(), response=response)
